@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  # Cấu hình cho Backend
+  backend:
+    build: ./server
+    container_name: mern-backend
+    ports:
+      - "5000:5000"
+
+  # Cấu hình cho Frontend
+  frontend:
+    build: ./client
+    container_name: mern-frontend
+    ports:
+      - "4173:4173"
+    depends_on:
+      - backend
+  # Câu 81, 83, 85: Khai báo Service backend, Port và Biến môi trường
+    environment:
+      - MONGODB_URI="mongodb://dinhlamtq2000_db_user:1234567890@ac-4ilbgqg-shard-00-00.2cwmdx9.mongodb.net:27017,ac-4ilbgqg-shard-00-01.2cwmdx9.mongodb.net:27017,ac-4ilbgqg-shard-00-02.2cwmdx9.mongodb.net:27017/?tls=true&authSource=admin&replicaSet=atlas-akc5fc-shard-0&retryWrites=true&w=majority"
+
