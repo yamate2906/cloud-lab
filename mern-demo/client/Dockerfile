@@ -1,23 +1,10 @@
-# Câu 51: Khai báo Node.js Image làm Base Image
-FROM node:20-alpine
-
-# Câu 52: Thiết lập thư mục làm việc
+﻿FROM node:20-alpine
 WORKDIR /app
-
-# Câu 53: Sao chép package.json và package-lock.json
 COPY package*.json ./
-
-# Câu 54: Cài đặt các package
-RUN npm install
-
-# Câu 55: Sao chép source code React vào Container
+RUN npm ci
 COPY . .
-
-# Câu 56: Build React Application
+ARG VITE_API_URL=/api
+ENV VITE_API_URL=$VITE_API_URL
 RUN npm run build
-
-# Khai báo port mặc định của Vite (thường là 5173 hoặc 4173)
 EXPOSE 4173
-
-# Lệnh chạy ứng dụng sau khi build (expose ra ngoài mạng)
-CMD ["npm", "run", "preview", "--", "--host"]
+CMD ["npm", "run", "preview", "--", "--host", "0.0.0.0", "--port", "4173"]

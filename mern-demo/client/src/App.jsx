@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react'
 
+const API_BASE = import.meta.env.VITE_API_URL || '/api'
+
 function App() {
   const [students, setStudents] = useState([])
   const [formData, setFormData] = useState({ studentId: '', name: '', email: '' })
 
   const fetchStudents = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/students')
+      const res = await fetch(`${API_BASE}/students`)
       const data = await res.json()
       setStudents(data)
     } catch (error) {
@@ -18,7 +20,7 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    await fetch('http://localhost:5000/api/students', {
+    await fetch(`${API_BASE}/students`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData)
@@ -30,7 +32,7 @@ function App() {
   // Câu 62: Hàm Xóa sinh viên
   const handleDelete = async (id) => {
     if(window.confirm('Bạn có chắc chắn muốn xóa sinh viên này?')) {
-      await fetch(`http://localhost:5000/api/students/${id}`, { method: 'DELETE' })
+      await fetch(`${API_BASE}/students/${id}`, { method: 'DELETE' })
       fetchStudents()
     }
   }
@@ -41,7 +43,7 @@ function App() {
     const newEmail = window.prompt('Nhập email mới:', currentEmail)
     
     if(newName && newEmail) {
-      await fetch(`http://localhost:5000/api/students/${id}`, {
+      await fetch(`${API_BASE}/students/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: newName, email: newEmail })
@@ -52,7 +54,7 @@ function App() {
 
   return (
     <div style={{ padding: '30px', fontFamily: 'Arial' }}>
-      <h2>Quản lý Sinh viên (MERN Stack)</h2>
+      <h2>Quản lý Sinh viên - Version 2.0</h2>
       
       <form onSubmit={handleSubmit} style={{ marginBottom: '20px', padding: '15px', backgroundColor: '#f9f9f9' }}>
         <input placeholder="MSSV" value={formData.studentId} onChange={e => setFormData({...formData, studentId: e.target.value})} required style={{ marginRight: '10px' }} />
