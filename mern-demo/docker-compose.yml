@@ -11,12 +11,12 @@
 
   frontend:
     image: admin2906/mern-frontend:aws-5.0
-    build:
-      context: ./client
-      args:
-        VITE_API_URL: /api
+    build: ./client
     container_name: mern-frontend
     restart: unless-stopped
+    environment:
+      BACKEND_URL: http://backend:5000
+      PORT: 4173
     ports:
       - "127.0.0.1:4174:4173"
     depends_on:

@@ -42,6 +42,21 @@ docker push admin2906/mern-backend:aws-2.0
 docker push admin2906/mern-frontend:aws-5.0
 ```
 
+## Deploy on Render
+
+The Docker images can also be used as Render Web Services. Build and push new Render tags from the repository root:
+
+```sh
+docker build -t admin2906/mern-backend:render-2.0 ./mern-demo/server
+docker build -t admin2906/mern-frontend:render-2.0 ./mern-demo/client
+docker push admin2906/mern-backend:render-2.0
+docker push admin2906/mern-frontend:render-2.0
+```
+
+Create the Backend Web Service from `admin2906/mern-backend:render-2.0`, with internal port `5000`, and set `MONGODB_URI`, `PORT=5000`, `NODE_ENV=production`, and `CLIENT_URL=https://<frontend-service>.onrender.com`. Create the Frontend Web Service from `admin2906/mern-frontend:render-2.0`, use port `10000`, and set `PORT=10000` plus `BACKEND_URL` to the Backend's private Render address and port, for example `http://<backend-service>:5000`. Keep the MongoDB URI only in the Backend's environment settings or a private Render Environment Group. Configure the Backend health check path as `/health`.
+
+The Frontend serves the built React files and proxies `/api/*` to `BACKEND_URL`, so browsers use one origin and don't need a public API URL or cross-origin CORS request. `CLIENT_URL` is only needed if a browser client calls the Backend URL directly. Render account creation, service creation, secrets, domains, deployments, and cloud-side verification still have to be completed in the account dashboard.
+
 On EC2, pull the new images and apply the Hub configuration:
 
 ```sh
