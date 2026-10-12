@@ -55,6 +55,8 @@ docker push admin2906/mern-frontend:render-2.0
 
 Create the Backend Web Service from `admin2906/mern-backend:render-2.0`, with internal port `5000`, and set `MONGODB_URI`, `PORT=5000`, `NODE_ENV=production`, and `CLIENT_URL=https://<frontend-service>.onrender.com`. Create the Frontend Web Service from `admin2906/mern-frontend:render-2.0`, use port `10000`, and set `PORT=10000` plus `BACKEND_URL` to the Backend's private Render address and port, for example `http://<backend-service>:5000`. Keep the MongoDB URI only in the Backend's environment settings or a private Render Environment Group. Configure the Backend health check path as `/health`.
 
+For GitHub Actions CI/CD, add repository secrets `DOCKERHUB_USERNAME`, `DOCKERHUB_TOKEN`, `RENDER_BACKEND_DEPLOY_HOOK`, and `RENDER_FRONTEND_DEPLOY_HOOK`. The workflow in `.github/workflows/render-deploy.yml` builds both images on changes to `mern-demo/server` or `mern-demo/client`, publishes `render-2.0` and `latest`, then calls the configured Render deploy hooks. Create the hooks in each Render service's settings and keep their URLs private.
+
 The Frontend serves the built React files and proxies `/api/*` to `BACKEND_URL`, so browsers use one origin and don't need a public API URL or cross-origin CORS request. `CLIENT_URL` is only needed if a browser client calls the Backend URL directly. Render account creation, service creation, secrets, domains, deployments, and cloud-side verification still have to be completed in the account dashboard.
 
 On EC2, pull the new images and apply the Hub configuration:
