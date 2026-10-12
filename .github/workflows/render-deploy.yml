@@ -6,7 +6,6 @@ on:
     paths:
       - 'mern-demo/server/**'
       - 'mern-demo/client/**'
-      - '.github/workflows/render-deploy.yml'
   workflow_dispatch:
 
 permissions:
