@@ -88,9 +88,10 @@ async function startServer() {
     await mongoose.connect(process.env.MONGODB_URI, {
       serverSelectionTimeoutMS: 10000
     });
-    console.log('Connected to MongoDB Atlas successfully');
+    console.log('✅ Connected to MongoDB Atlas successfully');
+    console.log('🚀 MERN Backend v1.2 - Auto-Deployed via CI/CD Webhook');
     app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
+      console.log(`🌐 Server running on port ${PORT}`);
     });
   } catch (error) {
     console.error('❌ Loi ket noi MongoDB:', error.message);

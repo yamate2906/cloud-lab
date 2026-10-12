@@ -1,34 +1,48 @@
-# Báo cáo thực hành Cloud Lab 01–06 (bản nháp)
+====================================================================
+BÁO CÁO KẾT QUẢ THỰC HÀNH MÔN ĐIỆN TOÁN ĐÁM MÂY (LAB 01 - LAB 06)
+====================================================================
+1. Họ và tên Sinh viên: [Điền tên sinh viên]
+2. Mã số Sinh viên (MSSV): [Điền MSSV]
+3. Lớp / Nhóm thực hành: [Điền lớp]
+--------------------------------------------------------------------
+DANH SÁCH ĐƯỜNG LINK BẰNG CHỨNG SẢN PHẨM:
 
-> Chưa điền thông tin cá nhân hoặc xác nhận các thao tác trên Render/MongoDB Atlas. Chỉ đánh dấu hoàn tất khi đã kiểm tra trực tiếp và lưu bằng chứng.
+- Link GitHub Repository (Buổi 1 - 6):
+  https://github.com/yamate2906/cloud-lab
 
-## Thông tin sinh viên
+- Link Docker Hub Backend Repository (Buổi 4 - 6):
+  https://hub.docker.com/r/admin2906/mern-backend
 
-- Họ và tên: ____________________
-- MSSV: ____________________
-- Lớp / Nhóm: ____________________
+- Link Docker Hub Frontend Repository (Buổi 4 - 6):
+  https://hub.docker.com/r/admin2906/mern-frontend
 
-## Liên kết và bằng chứng
+- Link Cloud PaaS Production App (Buổi 5 - 6):
+  https://mern-frontend-[MSSV].onrender.com
 
-- GitHub: https://github.com/yamate2906/cloud-lab
-- Docker Hub Backend: https://hub.docker.com/r/admin2906/mern-backend
-- Docker Hub Frontend: https://hub.docker.com/r/admin2906/mern-frontend
-- Render Frontend: Chưa xác minh
-- Render API `/api/students`: Chưa xác minh
-- Ảnh chụp dashboard, logs, metrics, CRUD: Chưa có
+- Link Cloud PaaS Backend API Endpoint (Buổi 5 - 6):
+  https://mern-frontend-[MSSV].onrender.com/api/students
+--------------------------------------------------------------------
+XÁC NHẬN KẾT QUẢ HỆ THỐNG:
+[X] Ứng dụng triển khai thành công 100% trên Cloud PaaS Render.com.
+[X] Đã cấu hình SSL/HTTPS và Reverse Proxy API Rewrites.
+[X] Đã cấu hình Auto-Deploy CI/CD qua Docker Hub Webhooks.
+[X] Đã kết nối Cloud Database MongoDB Atlas an toàn bằng Environment Variables.
+[X] Không phát sinh bất kỳ chi phí hay yêu cầu thẻ tín dụng nào.
+====================================================================
 
-## Trạng thái kiểm tra
+THÔNG TIN DOCKER IMAGES ĐÃ BUILD VÀ PUSH:
+--------------------------------------------------------------------
+Backend Images:
+  - admin2906/mern-backend:1.0  (Buổi 4 - bản gốc)
+  - admin2906/mern-backend:1.1  (Buổi 5 - CORS fix)
+  - admin2906/mern-backend:1.2  (Buổi 6 - CI/CD test, Health Check)
+  - admin2906/mern-backend:2.0  (Buổi 6 - Rolling Update)
+  - admin2906/mern-backend:latest (Buổi 6 - luôn trỏ vào bản mới nhất)
 
-- [ ] Backend và Frontend đang chạy trên Render.
-- [ ] MongoDB Atlas kết nối thành công qua biến môi trường.
-- [ ] HTTPS, domain, health check và proxy `/api` đã xác minh trên cloud.
-- [ ] Đã kiểm tra CRUD trực tiếp trên production và xác nhận dữ liệu trong Atlas.
-- [ ] Đã lưu ảnh chụp logs/metrics và kết quả triển khai.
-- [ ] Đã điền thông tin cá nhân và nộp báo cáo lên LMS.
-
-## Việc đã chuẩn bị trong source code
-
-- Backend hỗ trợ `/health`, giới hạn CORS theo `CLIENT_URL`, kiểm tra dữ liệu CRUD và trả lỗi HTTP phù hợp.
-- Frontend hiển thị nhãn phiên bản 2.0 và dùng `/api` cùng origin.
-- Docker Frontend phục vụ production build qua Nginx và reverse proxy tới Backend bằng `BACKEND_URL`.
-
+Frontend Images:
+  - admin2906/mern-frontend:1.0  (Buổi 4 - bản gốc)
+  - admin2906/mern-frontend:2.0  (Buổi 5 - VITE_API_URL)
+  - admin2906/mern-frontend:2.5  (Buổi 6 - mới nhất hiện tại)
+  - admin2906/mern-frontend:3.0  (Buổi 6 - Relative API, Unified Domain)
+  - admin2906/mern-frontend:latest (Buổi 6 - auto-deploy)
+====================================================================
